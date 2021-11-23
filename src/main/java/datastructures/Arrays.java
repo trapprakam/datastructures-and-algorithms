@@ -1,8 +1,31 @@
 package main.java.datastructures;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Stream;
+
 public class Arrays {
 
+    public int[] twoSum(int[] nums, int target) {
+        int[] toReturn = new int[2];
+        Map<Integer, Integer> storage = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int difference = target - nums[i];
+            if (!storage.containsKey(difference)) {
+                storage.put(nums[i], i);
+            } else {
+                toReturn[0] = storage.get(difference);
+                toReturn[1] = i;
+                return toReturn;
+            }
+        }
+        return toReturn;
+    }
+
     public static void main(String[] args) {
+        Arrays arrays = new Arrays();
+        int[] nums = {2, 7, 11, 15};
+        int[] result = arrays.twoSum(nums, 9);
         // When you create an array, you have to specify the size
         // of the array. Arrays are not a dynamic data structure.
         // This mean, once you set the size of the array. It can not
@@ -24,7 +47,8 @@ public class Arrays {
         //		   is not known. Then you will have to loop through
         //		   the array until you find the element resulting in
         //         the worst case scenario a time complexity of O(N)
-
+        int a = 10 % 10;
+        int b = 10 / 10;
         int[] intArray = new int[7];
 
         intArray[0] = 20;
@@ -47,8 +71,8 @@ public class Arrays {
             }
         }
 
-        // To add an element to the array
-        // O(N) worst case time complexity
+        // To add an element to an array
+        // O(N) worst case time complexity - if array is full
 
         // A new array will need to be created
         int[] newArray = new int[8];
@@ -76,7 +100,7 @@ public class Arrays {
             }
         }
 
-        // Delete an element in the array if index is known and you treat a null element as -1
+        // Delete an element in the array if index is known, and you treat a null element as -1
         // You can't use null because int is a primitive type
         // O(1)
         intArray[2] = -1;
